@@ -1,0 +1,376 @@
+ ;-- main:
+  ;-- section.0.__TEXT.__text:
+  ;-- _main:
+  ;-- func.100000988:
+  ;-- pc:
+entry0();
+; var int64_t var_50h @ stack - 0x50
+; var int64_t var_30h @ stack - 0x30
+; var int64_t var_28h @ stack - 0x28
+; var int64_t var_20h @ stack - 0x20
+; var int64_t var_18h @ stack - 0x18
+; var int64_t var_10h @ stack - 0x10
+; var int64_t var_8h @ stack - 0x8
+0x100000988      sub     sp, sp, 0x50 ; [00] -r-x section size 912 named 0.__TEXT.__text
+0x10000098c      stp     x22, x21, [var_30h]
+0x100000990      stp     x20, x19, [var_20h]
+0x100000994      stp     x29, x30, [var_10h]
+0x100000998      add     x29, sp, 0x40
+0x10000099c      adrp    x0, section.10.__DATA.__data ; 0x100008000
+0x1000009a0      add     x0, x0, 0 ; 0x100008000
+                                   ; section.10.__DATA.__data ; unsigned long long arg1
+0x1000009a4      adrp    x1, __mh_execute_header ; 0x100000000
+0x1000009a8      add     x1, x1, 0xda0 ; int64_t arg2
+0x1000009ac      bl      func.100000b38 ; sym.func.100000b38
+0x1000009b0      mov     x19, x0
+0x1000009b4      mov     w1, 0x40  ; '@'
+0x1000009b8      mov     w2, 7
+0x1000009bc      bl      swift_allocObject ; sym.imp.swift_allocObject
+0x1000009c0      mov     x20, x0
+0x1000009c4      adrp    x8, __mh_execute_header ; 0x100000000
+0x1000009c8      ldr     q0, [x8, 0xd90] ; 0x100000d90
+                                   ; section.2.__TEXT.__const
+0x1000009cc      adrp    x22, exit ; 0x100004000
+0x1000009d0      ldr     x22, [x22, 0x18] ; 0x100004018
+0x1000009d4      str     q0, [sp]
+0x1000009d8      str     q0, [x0, 0x10]
+0x1000009dc      str     x22, [x0, 0x38]
+0x1000009e0      mov     x8, 0x6e45 ; 'En'
+0x1000009e4      movk    x8, 0x6574, lsl 16
+0x1000009e8      movk    x8, 0x2072, lsl 32
+0x1000009ec      movk    x8, 0x6c66, lsl 48
+0x1000009f0      mov     x9, 0x6761 ; 'ag'
+0x1000009f4      movk    x9, 0x203a, lsl 16
+0x1000009f8      movk    x9, 0xec00, lsl 48
+0x1000009fc      stp     x8, x9, [x0, 0x20]
+0x100000a00      mov     w1, 0x20
+0x100000a04      mov     x2, -0x1f00000000000000
+0x100000a08      mov     x3, 0
+0x100000a0c      mov     x4, -0x2000000000000000
+0x100000a10      bl      $ss5print_9separator10terminatoryypd_S2StF ; sym.imp._ss5print_9separator10terminatoryypd_S2StF
+0x100000a14      mov     x0, x20   ; FILE *stream
+0x100000a18      bl      swift_bridgeObjectRelease ; sym.imp.swift_bridgeObjectRelease
+0x100000a1c      bl      section.1.__TEXT.__stubs ; sym.imp.Darwin.stdout
+0x100000a20      bl      fflush    ; sym.imp.fflush ; int fflush(FILE *stream)
+0x100000a24      mov     w0, 1
+0x100000a28      bl      $ss8readLine16strippingNewlineSSSgSb_tF ; sym.imp._ss8readLine16strippingNewlineSSSgSb_tF
+0x100000a2c      cbz     x1, 0x100000ad8
+0x100000a30      mov     x20, x1
+0x100000a34      mov     x21, 0
+0x100000a38      bl      func.100000bcc ; sym.func.100000bcc
+0x100000a3c      mov     x21, x0
+0x100000a40      mov     x0, x20
+0x100000a44      bl      swift_bridgeObjectRelease ; sym.imp.swift_bridgeObjectRelease
+0x100000a48      adrp    x8, section.10.__DATA.__data ; 0x100008000
+0x100000a4c      str     w21, [x8, 0x20]
+0x100000a50      mov     x0, x19
+0x100000a54      mov     w1, 0x40  ; '@'
+0x100000a58      mov     w2, 7
+0x100000a5c      bl      swift_allocObject ; sym.imp.swift_allocObject
+0x100000a60      mov     x19, x0
+0x100000a64      ldr     q0, [sp]
+0x100000a68      str     q0, [x0, 0x10]
+0x100000a6c      str     x22, [x0, 0x38]
+0x100000a70      cmp     w21, 1
+0x100000a74      mov     x8, 0x7257 ; 'Wr'
+0x100000a78      movk    x8, 0x6e6f, lsl 16
+0x100000a7c      movk    x8, 0x2e67, lsl 32
+0x100000a80      mov     x9, 0x6f43 ; 'Co'
+0x100000a84      movk    x9, 0x7272, lsl 16
+0x100000a88      movk    x9, 0x6365, lsl 32
+0x100000a8c      movk    x9, 0x2174, lsl 48
+0x100000a90      csel    x8, x9, x8, eq
+0x100000a94      mov     x9, -0x1a00000000000000
+0x100000a98      mov     x10, -0x1800000000000000
+0x100000a9c      csel    x9, x10, x9, eq
+0x100000aa0      stp     x8, x9, [x0, 0x20]
+0x100000aa4      mov     w1, 0x20
+0x100000aa8      mov     x2, -0x1f00000000000000
+0x100000aac      mov     w3, 0xa
+0x100000ab0      mov     x4, -0x1f00000000000000
+0x100000ab4      bl      $ss5print_9separator10terminatoryypd_S2StF ; sym.imp._ss5print_9separator10terminatoryypd_S2StF
+0x100000ab8      mov     x0, x19
+0x100000abc      bl      swift_bridgeObjectRelease ; sym.imp.swift_bridgeObjectRelease
+0x100000ab8      mov     x0, x19
+0x100000abc      bl      swift_bridgeObjectRelease ; sym.imp.swift_bridgeObjectRelease
+0x100000ac0      mov     w0, 0
+0x100000ac4      ldp     x29, x30, [var_10h]
+0x100000ac8      ldp     x20, x19, [var_20h]
+0x100000acc      ldp     x22, x21, [var_30h]
+0x100000ad0      add     sp, sp, 0x50 ; 0x178000
+0x100000ad4      ret
+0x100000ad8      mov     x0, x19
+0x100000adc      mov     w1, 0x40  ; '@'
+0x100000ae0      mov     w2, 7
+0x100000ae4      bl      swift_allocObject ; sym.imp.swift_allocObject
+0x100000ae8      mov     x19, x0
+0x100000aec      ldr     q0, [sp]
+0x100000af0      str     q0, [x0, 0x10]
+0x100000af4      str     x22, [x0, 0x38]
+0x100000af8      mov     x8, 0x6f4e ; 'No'
+0x100000afc      movk    x8, 0x6920, lsl 16
+0x100000b00      movk    x8, 0x706e, lsl 32
+0x100000b04      movk    x8, 0x7475, lsl 48
+0x100000b08      mov     x9, 0x2e  ; '.'
+0x100000b0c      movk    x9, 0xe900, lsl 48
+0x100000b10      stp     x8, x9, [x0, 0x20]
+0x100000b14      mov     w1, 0x20
+0x100000b18      mov     x2, -0x1f00000000000000
+0x100000b1c      mov     w3, 0xa
+0x100000b20      mov     x4, -0x1f00000000000000
+0x100000b24      bl      $ss5print_9separator10terminatoryypd_S2StF ; sym.imp._ss5print_9separator10terminatoryypd_S2StF
+0x100000b28      mov     x0, x19
+0x100000b2c      bl      swift_bridgeObjectRelease ; sym.imp.swift_bridgeObjectRelease
+0x100000b30      mov     w0, 1
+0x100000b34      bl      exit      ; sym.imp.exit ; void exit(int status)
+func.100000b38(unsigned long long arg1, int64_t arg2);
+; arg unsigned long long arg1 @ x0
+; arg int64_t arg2 @ x1
+; var int64_t var_20h @ stack - 0x20
+; var int64_t var_10h @ stack - 0x10
+0x100000b38      stp     x20, x19, [var_20h]!
+0x100000b3c      stp     x29, x30, [var_10h]
+0x100000b40      add     x29, sp, 0x10
+0x100000b44      mov     x19, x0   ; arg1
+0x100000b48      ldr     x0, [x0]  ; arg1
+0x100000b4c      and     x8, x0, 1 ; arg1
+0x100000b50      cmp     x0, 0     ; arg1
+0x100000b54      ccmp    x8, 0, 0, ne
+0x100000b58      b.eq    0x100000b7c
+0x100000b5c      ldr     x9, [x1]  ; arg2
+0x100000b60      asr     x8, x9, 0x20
+0x100000b64      add     x0, x1, w9, sxtw ; arg2
+0x100000b68      mov     x1, x8
+0x100000b6c      mov     x2, 0
+0x100000b70      mov     x3, 0
+0x100000b74      bl      swift_getTypeByMangledNameInContext ; sym.imp.swift_getTypeByMangledNameInContext
+0x100000b78      str     x0, [x19]
+0x100000b7c      ldp     x29, x30, [var_10h]
+0x100000b80      ldp     x20, x19, [sp], 0x20
+0x100000b84      ret
+func.100000b88(int64_t arg1);
+; arg int64_t arg1 @ x0
+; var int64_t var_30h @ stack - 0x30
+; var int64_t var_20h @ stack - 0x20
+; var int64_t var_10h @ stack - 0x10
+0x100000b88      str     x22, [var_30h]!
+0x100000b8c      stp     x20, x19, [var_20h]
+0x100000b90      stp     x29, x30, [var_10h]
+0x100000b94      add     x29, sp, 0x20
+0x100000b98      mov     x19, x21
+0x100000b9c      mov     x20, x0   ; arg1
+0x100000ba0      mov     x22, x8
+0x100000ba4      bl      strlen    ; sym.imp.strlen ; size_t strlen(const char *s)
+0x100000ba8      mov     x1, x0    ; int64_t arg2
+0x100000bac      mov     x0, x20   ; int64_t arg1
+0x100000bb0      bl      _validate ; sym._validate
+0x100000bb4      str     w0, [x22]
+0x100000bb8      mov     x21, x19
+0x100000bbc      ldp     x29, x30, [var_10h]
+0x100000bc0      ldp     x20, x19, [var_20h]
+0x100000bc4      ldr     x22, [sp], 0x30
+0x100000bc8      ret
+func.100000bcc(int64_t arg1, int64_t arg2);
+; arg int64_t arg1 @ x0
+; arg int64_t arg2 @ x1
+; var const char *s @ stack - 0x38
+; var int64_t var_20h @ stack - 0x20
+; var int64_t var_10h @ stack - 0x10
+0x100000bcc      sub     sp, sp, 0x40
+0x100000bd0      stp     x20, x19, [var_20h]
+0x100000bd4      stp     x29, x30, [var_10h]
+0x100000bd8      add     x29, sp, 0x30
+0x100000bdc      mov     x19, x21
+0x100000be0      mov     x3, x1    ; arg2
+0x100000be4      mov     x2, x0    ; arg1
+0x100000be8      tbnz    x1, 0x3c, 0x100000c3c
+0x100000bec      tbnz    x3, 0x3d, 0x100000c0c
+0x100000bf0      tbz     x2, 0x3c, 0x100000c3c
+0x100000bf4      and     x20, x3, 0xfffffffffffffff
+0x100000bf8      add     x0, x20, 0x20 ; const char *s
+0x100000bfc      bl      strlen    ; sym.imp.strlen ; size_t strlen(const char *s)
+0x100000c00      mov     x1, x0
+0x100000c04      add     x0, x20, 0x20
+0x100000c08      b       0x100000c24
+0x100000c0c      and     x8, x3, 0xffffffffffffff
+0x100000c10      stp     x2, x8, [s]
+0x100000c14      add     x0, s     ; const char *s
+0x100000c18      bl      strlen    ; sym.imp.strlen ; size_t strlen(const char *s)
+0x100000c1c      mov     x1, x0
+0x100000c20      add     x0, s
+0x100000c24      bl      _validate ; sym._validate
+0x100000c28      mov     x21, x19
+0x100000c2c      ldp     x29, x30, [var_10h]
+0x100000c30      ldp     x20, x19, [var_20h]
+0x100000c34      add     sp, sp, 0x40
+0x100000c38      ret
+0x100000c3c      adrp    x0, __mh_execute_header ; 0x100000000
+0x100000c40      add     x0, x0, 0xb88 ; 0x100000b88
+                                   ; sym.func.100000b88
+0x100000c44      adrp    x4, exit  ; 0x100004000
+0x100000c48      ldr     x4, [x4, 0x30] ; 0x100004030
+0x100000c4c      sub     x8, var_10h + 0x24
+0x100000c50      mov     x1, 0
+0x100000c54      mov     x21, x19
+0x100000c58      bl      $ss11_StringGutsV16_slowWithCStringyxxSPys4Int8VGKXEKlF ; sym.imp._ss11_StringGutsV16_slowWithCStringyxxSPys4Int8VGKXEKlF
+0x100000c5c      mov     x19, x21
+0x100000c60      cbz     x21, 0x100000c68
+0x100000c64      b       0x100000c28
+0x100000c68      ldur    w0, [var_20h + 0xc]
+0x100000c6c      b       0x100000c28
+  ;-- func.100000c70:
+_validate(int64_t arg1, unsigned long long arg2);
+; arg int64_t arg1 @ x0
+; arg unsigned long long arg2 @ x1
+0x100000c70      cmp     x1, 0x16  ; arg2
+0x100000c74      b.ne    0x100000d10
+0x100000c78      mov     x8, x0    ; arg1
+0x100000c7c      mov     w9, 0
+0x100000c80      ldrb    w10, [x0] ; arg1
+0x100000c84      and     w0, w10, 0xff
+0x100000c88      mov     w3, 0x5a  ; 'Z'
+0x100000c8c      eor     w0, w0, w3
+0x100000c90      ror     w0, w0, 3
+0x100000c94      mov     w3, 0xff
+0x100000c98      and     w0, w0, w3
+0x100000c9c      add     w0, w0, w9
+0x100000ca0      and     w10, w0, w3
+0x100000ca4      and     w10, w10, 0xff
+0x100000ca8      cmp     w10, 0x83
+0x100000cac      b.ne    0x100000d08
+0x100000cb0      mov     w11, 1
+0x100000cb4      adrp    x9, section.10.__DATA.__data ; 0x100008000
+0x100000cb8      add     x9, x9, 8 ; 0x100008008
+                                   ; section.11.__DATA.__ckdata
+0x100000cbc      mov     x10, x11
+0x100000cc0      cmp     x11, 0x16
+0x100000cc4      b.eq    0x100000cfc
+0x100000cc8      ldrb    w11, [x8, x10]
+0x100000ccc      and     w0, w11, 0xff
+0x100000cd0      mov     w3, 0x5a  ; 'Z'
+0x100000cd4      eor     w0, w0, w3
+0x100000cd8      ror     w0, w0, 3
+0x100000cdc      mov     w3, 0xff
+0x100000ce0      and     w0, w0, w3
+0x100000ce4      add     w0, w0, w10
+0x100000ce8      and     w12, w0, w3
+0x100000cec      ldrb    w13, [x9, x10]
+0x100000cf0      add     x11, x10, 1
+0x100000cf4      cmp     w13, w12, uxtb
+0x100000cf8      b.eq    0x100000cbc
+0x100000cfc      sub     x8, x10, 1
+0x100000d00      cmp     x8, 0x14
+0x100000d04      cset    w9, hi
+0x100000d08      mov     x0, x9
+0x100000d0c      ret
+0x100000d10      mov     w0, 0
+0x100000d14      ret
+  ;-- section.1.__TEXT.__stubs:
+imp.Darwin.stdout();
+0x100000d18      adrp    x16, exit ; 0x100004000 ; [01] -r-x section size 120 named 1.__TEXT.__stubs
+0x100000d1c      ldr     x16, [x16, 0x60] ; 0x100004060
+0x100000d20      br      x16
+$ss11_StringGutsV16_slowWithCStringyxxSPys4Int8VGKXEKlF();
+0x100000d24      adrp    x16, exit ; 0x100004000
+0x100000d28      ldr     x16, [x16, 0x20] ; 0x100004020
+0x100000d2c      br      x16
+$ss5print_9separator10terminatoryypd_S2StF();
+0x100000d30      adrp    x16, exit ; 0x100004000
+0x100000d34      ldr     x16, [x16, 0x38] ; 0x100004038
+0x100000d38      br      x16
+$ss8readLine16strippingNewlineSSSgSb_tF();
+0x100000d3c      adrp    x16, exit ; 0x100004000
+0x100000d40      ldr     x16, [x16, 0x40] ; 0x100004040
+0x100000d44      br      x16
+void exit(int status);
+0x100000d48      adrp    x16, exit ; 0x100004000
+0x100000d4c      ldr     x16, [x16] ; 0x100004000
+                                   ; reloc.exit
+0x100000d50      br      x16
+int fflush(FILE *stream);
+0x100000d54      adrp    x16, exit ; 0x100004000
+0x100000d58      ldr     x16, [x16, 8] ; 0x100004008
+                                   ; reloc.fflush
+0x100000d5c      br      x16
+size_t strlen(const char *s);
+0x100000d60      adrp    x16, exit ; 0x100004000
+0x100000d64      ldr     x16, [x16, 0x10] ; 0x100004010
+                                   ; reloc.strlen
+0x100000d68      br      x16
+swift_allocObject();
+0x100000d6c      adrp    x16, exit ; 0x100004000
+0x100000d70      ldr     x16, [x16, 0x48] ; 0x100004048
+0x100000d74      br      x16
+swift_bridgeObjectRelease();
+0x100000d78      adrp    x16, exit ; 0x100004000
+0x100000d7c      ldr     x16, [x16, 0x50] ; 0x100004050
+0x100000d80      br      x16
+swift_getTypeByMangledNameInContext();
+0x100000d84      adrp    x16, exit ; 0x100004000
+0x100000d88      ldr     x16, [x16, 0x58] ; 0x100004058
+0x100000d8c      br      x16
+;-- section.2.__TEXT.__const:
+0x100000d90      udf     1         ; [02] -r-x section size 26 named 2.__TEXT.__const
+0x100000d94      udf     0
+0x100000d98      udf     2
+0x100000d9c      udf     0
+0x100000da0      udf     0xa
+0x100000da4      udf     9
+0x100000da8      str     h3, [x0, 0x100]
+;-- section.3.__TEXT.__swift5_typeref:
+0x100000daa      unaligned         ; [03] -r-x section size 10 named 3.__TEXT.__swift5_typeref
+0x100000dab      unaligned
+0x100000dac      strh    w18, [x1]
+0x100000db0      invalid
+;-- section.4.__TEXT.__swift5_entry:
+0x100000db4      invalid           ; [04] -r-x section size 8 named 4.__TEXT.__swift5_entry
+0x100000db8      .qword 0x0000000100000000 ; segment.TEXT ; sym.__mh_execute_header
+;-- section.5.__TEXT.__unwind_info:
+0x100000dbc      .qword 0x0000001c00000001 ; [05] -r-x section size 120 named 5.__TEXT.__unwind_info
+0x100000dc0      udf     0x1c
+0x100000dc4      udf     0
+0x100000dc8      udf     0x1c
+0x100000dcc      udf     0
+0x100000dd0      udf     0x1c
+0x100000dd4      udf     2
+0x100000dd8      udf     0x988
+0x100000ddc      udf     0x40
+0x100000de0      udf     0x40
+0x100000de4      udf     0xd18
+0x100000de8      udf     0
+0x100000dec      udf     0x40
+0x100000df0      udf     0
+0x100000df4      udf     0
+0x100000df8      udf     0
+0x100000dfc      udf     3
+0x100000e00      invalid
+0x100000e04      invalid
+0x100000e08      udf     0
+0x100000e0c      invalid
+0x100000e10      invalid
+0x100000e14      invalid
+0x100000e18      add     z8.b, p0/m, z8.b, z23.b
+0x100000e1c      add     z3.b, p0/m, z3.b, z0.b
+0x100000e20      udf     0
+0x100000e24      invalid
+0x100000e28      add     z1.b, p0/m, z1.b, z0.b
+0x100000e2c      invalid
+0x100000e30      udf     0
+0x100000e34      udf     0
+;-- section.6.__TEXT.__eh_frame:
+0x100000e38      udf     0x10      ; [06] -r-x section size 64 named 6.__TEXT.__eh_frame
+0x100000e3c      udf     0
+0x100000e40      invalid
+0x100000e40      invalid
+0x100000e44      invalid
+0x100000e48      invalid
+0x100000e4c      udf     0x28
+0x100000e50      udf     0x18
+0x100000e54      invalid
+0x100000e58      invalid
+0x100000e5c      udf     0x44
+0x100000e60      udf     0
+0x100000e64      invalid
+0x100000e68      invalid
+0x100000e6c      bl      0x1000e5a74
+0x100000e70      invalid
