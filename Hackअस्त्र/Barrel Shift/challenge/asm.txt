@@ -1,8 +1,8 @@
-NOTE:
-this code i got from dissasmbling the file "crackme".
+;NOTE:
+;this code i got from dissasmbling the file "crackme".
 
 
-;-- main:
+  ;-- main:
   ;-- section.0.__TEXT.__text:
   ;-- _main:
   ;-- func.100000988:
