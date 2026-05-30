@@ -1,4 +1,8 @@
- ;-- main:
+NOTE:
+this code i got from dissasmbling the file "crackme".
+
+
+;-- main:
   ;-- section.0.__TEXT.__text:
   ;-- _main:
   ;-- func.100000988:
