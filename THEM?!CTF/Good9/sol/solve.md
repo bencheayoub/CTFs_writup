@@ -1,4 +1,4 @@
-# 🌙 Goo9 — Android RE CTF Write-up
+# 🌙 Good9 — Android RE CTF Write-up
 
 > **Category:** Android Reverse Engineering
 > **Flag:** `THEM?!CTF{D0_Y0u_H4v3_A_G00d_T1m3?}`
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Goo9 is a native-heavy Android RE challenge. The Java layer is a thin façade — all meaningful logic lives inside a single shared library, `libsilence.so`, which implements a modified SHA-256 cipher with non-standard IVs, a two-table XOR key obfuscation scheme, and runtime anti-analysis checks.
+nightnight is a native-heavy Android RE challenge. The Java layer is a thin façade — all meaningful logic lives inside a single shared library, `libsilence.so`, which implements a modified SHA-256 cipher with non-standard IVs, a two-table XOR key obfuscation scheme, and runtime anti-analysis checks.
 
 ---
 
@@ -17,7 +17,7 @@ Goo9 is a native-heavy Android RE challenge. The Java layer is a thin façade �
 Unpack the APK with apktool:
 
 ```bash
-apktool d goo9.apk -o out/
+apktool d nightnight.apk -o out/
 ```
 
 The asset directory immediately draws attention:
@@ -109,7 +109,7 @@ data  = open("libsilence.so", "rb").read()
 pairs = [(0xcc0 + i, 0xce0 + i) for i in range(18)]
 key   = bytes(data[a] ^ data[b] for a, b in pairs)
 print(key)
-# b'goo9{silent}'
+# b'nightnight{silent}'
 ```
 
 The remaining 22 bytes are loaded at runtime directly from the asset file via `AAsset_read`, completing the full 40-byte key.
@@ -151,9 +151,9 @@ This deviation from the standard produces a completely different digest for any 
 Rather than reimplementing the custom hash variant from scratch, we ran the application on a real device. The flag is printed in plaintext to logcat immediately after decryption — a detail visible from the Java layer static analysis in Step 2.
 
 ```bash
-adb install goo9.apk
+adb install nightnight.apk
 adb shell am start -n lab.nightjar/.MainActivity
-adb logcat | grep "Good Night"
+adb logcat | grep "good Night"
 ```
 
 ```
@@ -169,7 +169,7 @@ I Good Night: Flag is THEM?!CTF{D0_Y0u_H4v3_A_G00d_T1m3?}.
 ### Technical
 
 * Custom SHA-256 IV substitution produces a non-standard digest, defeating off-the-shelf hash tools
-* The partial key `goo9{silent}` is obfuscated via a two-table XOR scheme embedded in the binary
+* The partial key `nightnight{silent}` is obfuscated via a two-table XOR scheme embedded in the binary
 * Dynamic `RegisterNatives` registration hides all meaningful function names from the export table
 * Anti-Frida / anti-debug checks are architecture-specific — weaker on x86_64 than on ARM
 
