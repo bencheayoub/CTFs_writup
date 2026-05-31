@@ -19,7 +19,7 @@ Platforms covered so far: **CyberTalents**,... OR Hackathons like: **Hackअस�
 
 ## Tools I use
 
-`ghidra` · `gdb` `Cutter` `AvaloniailSpy` / `pwndbg` · `python` · `strings` · `objdump` · `file`
+`ghidra` · `gdb` · `Cutter` · `AvaloniailSpy` / `pwndbg` · `python` · `strings` · `objdump` · `file`
 
 ---
 
