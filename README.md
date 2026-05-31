@@ -15,7 +15,7 @@ Platform/
 
 Each solution folder contains a `solve.md` writeup explaining the approach, and a `solve.py` script when applicable.
 
-Platforms covered so far: **CyberTalents**, **Hackअस्त्र**, more added over time.
+Platforms covered so far: **CyberTalents**,... OR Hackathons like: **Hackअस्त्र**, **THEM?!CTF**, and more added over time.
 
 ## Tools I use
 
