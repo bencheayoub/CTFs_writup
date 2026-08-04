@@ -23,4 +23,4 @@ Platforms covered so far: **CyberTalents**,... OR Hackathons like: **Hackअस�
 
 ---
 
-> All challenges are from authorized CTF platforms and solved for learning purposes.
+> All challenges are from authorized CTF platforms.
