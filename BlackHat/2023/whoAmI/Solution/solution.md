@@ -1,14 +1,13 @@
-# Black Hat CTF --- Who Am I
+# Black Hat CTF — Who Am I
 
 ## Challenge
 
-**Category:** Reverse Engineering\
+**Category:** Reverse Engineering  
 **File:** `WhatAmI.dll`
 
-The goal is to locate the image embedded inside the DLL. The image is
-stored as a Windows resource rather than as a normal PNG/JPEG file.
+The goal is to locate the image embedded inside the DLL. The image is stored as a Windows resource rather than as a normal PNG/JPEG file.
 
-------------------------------------------------------------------------
+---
 
 ## 1. Open the DLL in Ghidra
 
@@ -16,7 +15,7 @@ Import `WhatAmI.dll` into Ghidra and let the analysis finish.
 
 In the **Program Trees** panel on the left, you can see the PE sections:
 
-``` text
+```text
 Headers
 .text
 .rdata
@@ -30,14 +29,13 @@ Debug Data
 
 The interesting section is:
 
-``` text
+```text
 .rsrc
 ```
 
-This is the Windows **resource section**, where resources such as icons,
-dialogs, strings, and bitmaps can be stored.
+This is the Windows **resource section**, where resources such as icons, dialogs, strings, and bitmaps can be stored.
 
-------------------------------------------------------------------------
+---
 
 ## 2. Inspect `.rsrc`
 
@@ -45,26 +43,26 @@ Select `.rsrc`.
 
 The resource section starts at:
 
-``` text
+```text
 0x180005000
 ```
 
 The DLL has an image base of:
 
-``` text
+```text
 0x180000000
 ```
 
 Therefore, the beginning of `.rsrc` is:
 
-``` text
+```text
 0x180000000 + 0x5000
 = 0x180005000
 ```
 
 At this address Ghidra shows an `IMAGE_RESOURCE_DIRECTORY`.
 
-------------------------------------------------------------------------
+---
 
 ## 3. Identify the bitmap resource
 
@@ -72,29 +70,27 @@ Windows assigns numeric resource types.
 
 The important one here is:
 
-``` text
+```text
 2
 ```
 
 Resource type `2` corresponds to:
 
-``` text
+```text
 RT_BITMAP
 ```
 
-Following the resource directory leads to the bitmap resource and its
-`IMAGE_RESOURCE_DATA_ENTRY`.
+Following the resource directory leads to the bitmap resource and its `IMAGE_RESOURCE_DATA_ENTRY`.
 
 The data entry contains an RVA pointing to:
 
-``` text
+```text
 0x000050A0
 ```
 
-Because PE resource addresses are stored as RVAs, convert it to a
-virtual address by adding the image base:
+Because PE resource addresses are stored as RVAs, convert it to a virtual address by adding the image base:
 
-``` text
+```text
 Image Base: 0x180000000
 RVA:        0x000050A0
 ────────────────────────
@@ -103,29 +99,29 @@ VA:         0x1800050A0
 
 So the actual bitmap data begins at:
 
-``` text
+```text
 0x1800050A0
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 4. Verify that this is really the image
 
-Jump to the address in Ghidra:
+Jump to the address in Ghidra by pressing:
 
-``` text
+```text
 G
 ```
 
-and enter:
+Then enter:
 
-``` text
+```text
 0x1800050A0
 ```
 
 The bytes at this location begin with:
 
-``` text
+```text
 28 00 00 00
 DF 01 00 00
 4D 01 00 00
@@ -137,7 +133,7 @@ These are the fields of a Windows `BITMAPINFOHEADER`.
 
 ### Header interpretation
 
-``` text
+```text
 28 00 00 00  → Header size = 40 bytes
 DF 01 00 00  → Width       = 479
 4D 01 00 00  → Height      = 333
@@ -145,69 +141,55 @@ DF 01 00 00  → Width       = 479
 04 00         → Bit depth   = 4
 ```
 
-Therefore the resource is a:
+Therefore, the resource is a:
 
-``` text
+```text
 479 × 333
 4-bit
 Windows bitmap (DIB)
 ```
 
-This also explains why searching the binary for the usual BMP magic
-bytes:
+This also explains why searching the binary for the usual BMP magic bytes:
 
-``` text
+```text
 42 4D
 ```
 
-(`BM`) does not find the image. A bitmap stored as a Windows resource is
-commonly stored as a DIB without the normal `BITMAPFILEHEADER`.
+(`BM`) does not find the image. A bitmap stored as a Windows resource is commonly stored as a DIB without the normal `BITMAPFILEHEADER`.
 
-------------------------------------------------------------------------
+---
 
 ## 5. Extracting the image
 
-There are two useful approaches.
-
-### Method A --- Use a PE resource extractor
-
-Because the image is an `RT_BITMAP` resource, a PE resource extraction
-tool can extract it directly.
+Because the image is an `RT_BITMAP` resource, it can be extracted from the PE resource section.
 
 The resource is:
 
-``` text
-Type: Bitmap
+```text
+Type:        Bitmap
 Resource ID: 102
-Language: 0x409
+Language:    0x409
 ```
 
-After extraction, the resulting bitmap can be opened with an image
-viewer.
+The bitmap data starts at:
 
-### Method B --- Extract from Ghidra
-
-In Ghidra, navigate to:
-
-``` text
-1800050A0
+```text
+0x1800050A0
 ```
-
-The bitmap data starts there.
 
 The resource data size is approximately:
 
-``` text
+```text
 0x13898
 ```
 
-The bytes can be exported and reconstructed as a BMP by adding the
-appropriate `BITMAPFILEHEADER` in front of the existing DIB data.
+Since a Windows bitmap resource stores the DIB data without the usual BMP file header, the extracted data can be reconstructed into a normal `.bmp` file by adding a `BITMAPFILEHEADER`.
 
-The existing data already contains the `BITMAPINFOHEADER`, color table,
-and pixel data; the missing part is the normal BMP file header.
+After extracting and converting the bitmap, we get the hidden image:
 
-------------------------------------------------------------------------
+![Extracted image](image.jpg)
+
+---
 
 ## 6. Why `0x1800050A0`?
 
@@ -215,11 +197,7 @@ The address is not arbitrary.
 
 The calculation is:
 
-``` text
-.rsrc RVA
-    ↓
-0x5000
-
+```text
 Bitmap resource data RVA
     ↓
 0x50A0
@@ -237,7 +215,7 @@ Final virtual address
 
 So the important chain is:
 
-``` text
+```text
 PE
 └── .rsrc
     └── IMAGE_RESOURCE_DIRECTORY
@@ -250,26 +228,25 @@ PE
                                 └── Bitmap data
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Result
 
 The hidden image is an **embedded Windows bitmap resource** located at:
 
-``` text
+```text
 0x1800050A0
 ```
 
-with the following properties:
+| Property | Value |
+|---|---|
+| Resource type | `RT_BITMAP` |
+| Resource type ID | `2` |
+| Resource ID | `102` |
+| Language | `0x409` |
+| Width | `479` |
+| Height | `333` |
+| Bit depth | `4-bit` |
+| Bitmap data VA | `0x1800050A0` |
 
-  Property                     Value
-  ------------------ ---------------
-  Resource type          `RT_BITMAP`
-  Resource type ID               `2`
-  Resource ID                  `102`
-  Language                   `0x409`
-  Width                        `479`
-  Height                       `333`
-  Bit depth                  `4-bit`
-  Bitmap data VA       `0x1800050A0`
-
+The key idea in this challenge is to inspect the PE's **`.rsrc` section** instead of looking only through `.text` and `.rdata`. Windows resources can contain images without the usual standalone image-file headers.
